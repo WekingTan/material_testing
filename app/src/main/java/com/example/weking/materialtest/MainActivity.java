@@ -2,6 +2,7 @@ package com.example.weking.materialtest;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -52,12 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
         /**
          * 实例化悬浮按钮；
+         * 直接调用 Snackbar；
          */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "FAB clicked", Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, "Data deleted", Snackbar.LENGTH_SHORT).setAction("Undo", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this, "Data restored", Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
             }
         });
     }
